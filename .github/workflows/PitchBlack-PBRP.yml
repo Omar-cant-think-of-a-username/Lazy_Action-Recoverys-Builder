@@ -135,7 +135,8 @@ jobs:
             codename=$(sed -n 's/^[[:space:]]*PRODUCT_DEVICE[[:space:]]*:=\s*\(.*\)/\1/p' "$file")
             if [[ -n "$makefile" && -n "$brand" && -n "$codename" ]]; then
                 DEVICE_MAKEFILE="$makefile"
-                DEVICE_DIRECTORY="device/$brand"
+                brand_lc=$(echo "$brand" | tr '[:upper:]' '[:lower:]')
+                DEVICE_DIRECTORY="device/$brand_lc"
                 DEVICE_NAME="$codename"
                 echo "DEVICE_MAKEFILE=${DEVICE_MAKEFILE}" >> $GITHUB_ENV
                 echo "DEVICE_NAME=${DEVICE_NAME}" >> $GITHUB_ENV
